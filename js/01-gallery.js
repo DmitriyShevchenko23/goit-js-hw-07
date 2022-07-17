@@ -1,14 +1,12 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-
-
 const galleryContainer = document.querySelector('.gallery');
 const galleryMarkkUp = createGalleryMarkUp(galleryItems);
 
-galleryContainer.insertAdjacentHTML('beforeend',galleryMarkkUp)
+galleryContainer.insertAdjacentHTML('beforeend', galleryMarkkUp)
 
-galleryContainer.addEventListener('click',onGalleryContainerClick)
+galleryContainer.addEventListener('click', onGalleryContainerClick)
 
 function createGalleryMarkUp(galleryItems) {
     return galleryItems
@@ -20,17 +18,28 @@ function createGalleryMarkUp(galleryItems) {
             <img
             class='gallery__img'
             alt='${item.description}' 
-            src='${item.preview}'>
+            src='${item.preview}'
+            data-source='${item.original}'
+            />
             </a>
-         </div>`;     
-    })
-    .join('');  
-    
+         </div>`;
+        })
+        .join('');
+
 };
 
 function onGalleryContainerClick(event) {
-    const imageEl = event.target.dataset.original;
+    event.preventDefault()
+    
+    const imageEl = event.target.dataset.source;
+    
     if (!imageEl) {
         return;
-    }
+    } else {
+        const instance = basicLightbox.create(`
+    <img src="${imageEl}" width="800" height="600">`
+        );
+        instance.show();
+    };
+   
 };
