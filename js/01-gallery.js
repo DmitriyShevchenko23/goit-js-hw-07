@@ -39,18 +39,18 @@ function onGalleryContainerClick(event) {
     }
     else
     {
-        const instance = basicLightbox
+        const modalEl = basicLightbox
             .create(`<img src="${imageEl}" width="800" height="600">`,
                 {
                     onShow: () => window.addEventListener('keydown', onPressEscKey),
                     onClose: () => window.removeEventListener('keydown', onPressEscKey),
                 }
             );
-        instance.show();
+        modalEl.show();
 
         function onPressEscKey(event) {
          if (event.code === 'Escape') {
-         instance.close();
+         modalEl.close();
             };
         };
     };
