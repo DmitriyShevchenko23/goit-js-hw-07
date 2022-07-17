@@ -34,12 +34,26 @@ function onGalleryContainerClick(event) {
     const imageEl = event.target.dataset.source;
     
     if (!imageEl) {
+       
         return;
-    } else {
-        const instance = basicLightbox.create(`
-    <img src="${imageEl}" width="800" height="600">`
-        );
+    }
+    else
+    {
+        const instance = basicLightbox
+            .create(`<img src="${imageEl}" width="800" height="600">`,
+                {
+                    onShow: () => window.addEventListener('keydown', onPressEscKey),
+                    onClose: () => window.removeEventListener('keydown', onPressEscKey),
+                }
+            );
         instance.show();
+
+        function onPressEscKey(event) {
+         if (event.code === 'Escape') {
+         instance.close();
+            };
+        };
     };
    
 };
+
