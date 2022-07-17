@@ -16,7 +16,7 @@ function createGalleryMarkUp(galleryItems) {
             class='gallery__link'
             href='${item.original}'>
             <img
-            class='gallery__img'
+            class='gallery__image'
             alt='${item.description}' 
             src='${item.preview}'
             data-source='${item.original}'
