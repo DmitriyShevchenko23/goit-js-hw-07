@@ -4,7 +4,7 @@ const galleryContainer = document.querySelector('.gallery');
 const galleryMarkUp = createGalleryMarkUp(galleryItems)
 
 galleryContainer.insertAdjacentHTML('beforeend',galleryMarkUp)
-galleryContainer.addEventListener('click', onGalleryContainerClick);
+
 
 function createGalleryMarkUp(galleryItems) {
     return galleryItems.map(({ original, preview, description }) => {
@@ -21,23 +21,14 @@ function createGalleryMarkUp(galleryItems) {
   </a>
 </div>`
     }).join('')
-}
+};
 
-function onGalleryContainerClick(event)  {
-    event.preventDefault()
-
-    const imageEl = event.target.dataset.source;
-
-    if (!imageEl) {
-        return;
-    } else {
-        const lightbox = new SimpleLightbox(".gallery a", {
+const lightbox = new SimpleLightbox(".gallery a", {
             captionsData: "alt",
             captionDelay: 250,
             captionPosition: "bottom",
         });
-    };
-};
+
 
 
 
